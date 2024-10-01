@@ -68,21 +68,24 @@ function mostrar_año(){
     .then( data => {
         document.querySelector(".info-data").innerHTML=""
         data.description.forEach(element => {
-            document.querySelector(".info-data").innerHTML+=`
-            <div class="card">
-                <div class="head">
-                    <div>
-                        <h2>${element["#TITLE"]}</h2>
+            if (element["#YEAR"]==buscar){
+                document.querySelector(".info-data").innerHTML+=`
+                <div class="card">
+                    <div class="head">
+                        <div>
+                            <h2>${element["#TITLE"]}</h2>
+                        </div>
+                    </div>
+                    <img class="photo" src="${element["#IMG_POSTER"]}">
+                    <div class="contenido">
+                        <p>Year: ${element["#YEAR"]}</p>
+                        <p>Actors: ${element["#ACTORS"]}</p>
+                        <p>${element["#AKA"]}</p>
                     </div>
                 </div>
-                <img class="photo" src="${element["#IMG_POSTER"]}">
-                <div class="contenido">
-                    <p>Year: ${element["#YEAR"]}</p>
-                    <p>Actors: ${element["#ACTORS"]}</p>
-                    <p>${element["#AKA"]}</p>
-                </div>
-            </div>
-            `
+                `
+            }
+            
         });
     })
 }
